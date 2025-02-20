@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
 # Load merged NHANES data
@@ -18,7 +19,7 @@ age_column = df[['Age']].astype(int)
 df.drop(columns=['Age'], inplace=True)
 
 # Ensure Has_Diabetes remains an integer
-df['Has_Diabetes'] = df['Has_Diabetes'].astype('Int64') 
+df['Has_Diabetes'] = df['Has_Diabetes'].astype('Int64')
 
 # Normalize medical test results (excluding Has_Diabetes)
 medical_tests = df.columns.difference(['Has_Diabetes'])
@@ -30,6 +31,11 @@ df = pd.concat([seqn, age_column, df[['Gender_Male', 'Gender_Female']], df.drop(
 
 # Ensure Gender columns are integers
 df[['Gender_Male', 'Gender_Female']] = df[['Gender_Male', 'Gender_Female']].astype(int)
+
+# Split train and test
+train, test = train_test_split(df, test_size=0.2)
+train.to_csv("data/train.csv", index=False)
+test.to_csv("data/test.csv", index=False)
 
 # Save processed dataset for RL
 df.to_csv("data/nhanes_preprocessed.csv", index=False)
