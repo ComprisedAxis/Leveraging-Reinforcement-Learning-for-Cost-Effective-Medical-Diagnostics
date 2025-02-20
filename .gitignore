@@ -1,0 +1,5 @@
+/data
+/myenv
+/__pycache__
+*.pth
+*.csv
