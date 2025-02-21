@@ -124,6 +124,7 @@ feature_name_map = {
 
 # Random Forest Feature Importance
 rf_feature_importance = pd.DataFrame({'Feature': X.columns, 'Importance': rf_clf.feature_importances_})
+rf_feature_importance = rf_feature_importance[rf_feature_importance['Importance'] >= 0.05]
 rf_feature_importance = rf_feature_importance.sort_values(by='Importance', ascending=False)
 
 # Rename feature names using the mapping
@@ -137,12 +138,12 @@ plt.subplot(1, 2, 1)
 ex = sns.barplot(
     y=rf_feature_importance['Feature'],
     x=rf_feature_importance['Importance'],
-    hue=rf_feature_importance['Feature'],
-    palette=custom_colors,
+    color=custom_colors[0],
     legend=False
 )
 for patch, alpha in zip(ex.patches, custom_alphas):
     patch.set_alpha(alpha)
+
 plt.xlabel("Feature Importance")
 plt.ylabel("Medical Tests & Demographics")
 plt.title("Random Forest Feature Importance")
@@ -163,15 +164,10 @@ xgb_feature_importance['Feature'] = (
 
 # Create the barplot
 plt.subplot(1, 2, 2)
-sns.barplot(y=xgb_feature_importance['Feature'], x=xgb_feature_importance['Importance'], hue=xgb_feature_importance['Feature'], palette="Oranges_r", legend=False)
-plt.xlabel("Feature Importance")
-plt.ylabel("Medical Tests & Demographics")
-plt.title("XGBoost Feature Importance")
 ax = sns.barplot(
     y=xgb_feature_importance['Feature'],
     x=xgb_feature_importance['Importance'],
-    hue=xgb_feature_importance['Feature'],
-    palette=custom_colors,
+    color=custom_colors[1],
     legend=False
 )
 for patch, alpha in zip(ax.patches, custom_alphas):
