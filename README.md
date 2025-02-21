@@ -53,22 +53,26 @@ The primary goal of this project is to develop a system that minimizes false neg
 - **Merge data:**
 The merge.py script reads several NHANES XPT files (demographics, lab tests, etc.), selects relevant columns, handles missing values, and merges them into a single CSV file (nhanes_diabetes.csv).
 To run:
-> python merge.py
+```bash
+python merge.py
+```
 
 ---
 
 - **Preprocessing:**
 The preprocessing.py script loads the merged data, applies one-hot encoding (e.g., for Gender), normalizes medical test values (excluding age), and saves the final dataset (nhanes_preprocessed.csv) for model training.
 To run:
-> python preprocessing.py
-
+```bash
+python preprocessing.py
+```
 ---
 
 ## Baseline Models
 The baselines.py script implements baseline classifiers (Random Forest, Logistic Regression, XGBoost) on the preprocessed data. It performs training, cross-validation, and plots feature importances and ROC curves.
 To run:
-> python baselines.py
-
+```bash
+python baselines.py
+```
 ---
 
 ## Imputation Module
@@ -94,7 +98,9 @@ The RL training is conducted via train.py:
 - Diagnosis rewards are set by λ = 5 or λ = 10 for a correct positive diagnosis and test cost penalties are scaled by ρ = 0.1 or ρ = 0.2.
 - The training loop trains the imputer, classifier, and RL agent sequentially.
 To start training:
-> python train.py
+```bash
+python train.py
+```
 
 ---
 
@@ -105,7 +111,9 @@ The evaluate.py script loads trained RL models and evaluates them over many epis
 - Average cost per episode.
 It also generates plots (Pareto front and bar charts) to compare different hyperparameter configurations.
 To run evaluation:
-> python evaluate.py
+```bash
+python evaluate.py
+```
 
 ---
 
@@ -129,6 +137,7 @@ To run evaluation:
    git clone https://github.com/ComprisedAxis/Leveraging-Reinforcement-Learning-for-Cost-Effective-Medical-Diagnostics.git
    cd Leveraging-Reinforcement-Learning-for-Cost-Effective-Medical-Diagnostics
    pip install -r requirements.txt
+   ```
 2. Place the NHANES raw data files (e.g., P_DEMO.xpt, P_DIQ.xpt, etc.) in the data/ folder.
 
 ---
