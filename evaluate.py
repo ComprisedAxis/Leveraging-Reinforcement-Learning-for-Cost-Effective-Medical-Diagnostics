@@ -44,8 +44,8 @@ FEATURE_COLS = [test for panel in test_panels for test in test_panels[panel]]
 DATA_PATH = "data/train.csv"
 IMPUTE_PARAMS = {'batch_size': 256, 'lr': 1e-4, 'alpha': 1e6}
 
-LAMBDA_VALUES = [10]
-RHO_VALUES = [0.1]
+LAMBDA_VALUES = [5, 10]
+RHO_VALUES = [0.1, 0.2]
 VERBOSE = False
 
 
