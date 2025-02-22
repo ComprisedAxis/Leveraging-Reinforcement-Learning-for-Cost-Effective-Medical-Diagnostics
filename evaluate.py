@@ -302,7 +302,7 @@ def main():
     if df_results.empty:
         print("Evaluation did not produce any results.")
     else:
-        df_results.to_csv("evaluation_results.csv", index=False)
+        df_results.to_csv("results/evaluation_results.csv", index=False)
         print("Saved evaluation results to evaluation_results.csv")
         compare_policies(df_results)
 
